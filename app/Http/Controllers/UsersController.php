@@ -48,18 +48,31 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+ 
+        $request->validate([
+        'name' => ['required', 'string', 'max:191'],
+        'email' => ['required', 'string', 'email', 'max:191', 
+        'unique:users'],
+        'password' => ['required', 'string', 'min:6','max:191', 
+        'confirmed'],
+        ]);
+       $userreg = new User([
+        'name' => $request->get('name'),
+        'password' => Hash::make($request['password']),
+        ]);
+       $email = $request->get('email');
+       $data = ([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        ]);
+       Mail::to($email)->send(new WelcomeMail($data));
         
+        $userreg->save();
         
-        $user = new User;
-        $user->name = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->save();
-
-        return redirect('/posts')->with('success', 'Post Created Successfully!');
+        flash('User has been added!','success')->important();
+       return back();
+       }
     }
 
     /**
