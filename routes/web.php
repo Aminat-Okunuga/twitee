@@ -20,8 +20,6 @@ use App\Http\Controllers\PagesController;
 // });
 
 Route::get('/', "App\http\Controllers\PagesController@index");
-// Route::get('/posts', "App\http\Controllers\PagesController@posts");
-Route::get('/profile', "App\http\Controllers\PagesController@userProfile");
 
 
 Auth::routes();

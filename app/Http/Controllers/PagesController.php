@@ -11,17 +11,17 @@ class PagesController extends Controller
         return view('pages.index', compact('heading'));
     }
 
-    public function posts(){
+    // public function posts(){
         
-        $data = array(
-            'heading' => 'Welcome To Twitee!',
-            'sub_heading' => 'All Posts',
-            'posts' => ['Nigeria Politics', 'Schools To Reopen By September']
-        );
-        return view('pages.posts')->with($data);
-    }
+    //     $data = array(
+    //         'heading' => 'Welcome To Twitee!',
+    //         'sub_heading' => 'All Posts',
+    //         'posts' => ['Nigeria Politics', 'Schools To Reopen By September']
+    //     );
+    //     return view('pages.posts')->with($data);
+    // }
 
-    public function userProfile(){
-        return view('pages.user_profile');
-    }
+    // public function userProfile(){
+    //     return view('pages.user_profile');
+    // }
 }
