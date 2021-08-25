@@ -81,12 +81,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-       $user = User::find($id);
     
-       return view('posts.show')->with('user', $user);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -110,7 +105,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         
-       
+    //    
     }
 
     /**
@@ -121,6 +116,6 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-       
+    //    
     }
 }

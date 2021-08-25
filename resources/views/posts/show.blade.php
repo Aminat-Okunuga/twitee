@@ -11,7 +11,7 @@
 </div>
 <p>{{$post->body}}</p>
 <hr>
-<p>Author: {{$post->user_id}}</p>
+<p>Author: {{$post->user_name}}</p>
 <small>Written on: {{$post->created_at}}<small>
 <hr>
 @if (!Auth::guest())
