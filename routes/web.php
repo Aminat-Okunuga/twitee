@@ -19,7 +19,7 @@ use App\Http\Controllers\PagesController;
 //     return "Twitee";
 // });
 
-Route::get('/', "App\http\Controllers\PagesController@index");
+Route::get('/', "App\Http\Controllers\PagesController@index");
 
 
 Auth::routes();
