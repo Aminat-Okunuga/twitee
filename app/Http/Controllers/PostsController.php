@@ -17,7 +17,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]); //This is to allow non-logged in users to acess the home page and the posts
+        $this->middleware('auth', ['except' => ['index']]); //This is to allow non-logged in users to acess the home page 
     }
 
     /**
@@ -30,6 +30,7 @@ class PostsController extends Controller
         // $posts = Post::all();
         $posts = Post::orderBy('title', 'desc')->get();
         return view('posts.index')->with('posts', $posts);
+        // return $posts;
     }
 
     /**
@@ -76,9 +77,13 @@ class PostsController extends Controller
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
         $post->cover_image = $fileNameToStore;
-        $post->save();
+        // $success = $post->save();
+       $post->save();
 
         return redirect('/posts')->with('success', 'Post Created Successfully!');
+        // return [
+        //     'success' => $success
+        // ];
     }
 
     /**
@@ -92,6 +97,7 @@ class PostsController extends Controller
        $post = Post::find($id);
     
        return view('posts.show')->with('post', $post);
+    // return $post;
     }
 
     /**
@@ -148,9 +154,13 @@ class PostsController extends Controller
         if($request->hasFile('cover_image')){
             $post->cover_image = $fileNameToStore;
         }
-        $post->save();
+        // $success = $post->save();
+         $post->save();
 
         return redirect('/posts')->with('success', 'Post Updated Successfully!');
+        // return [
+        //     'success'=> $success
+        // ];
     }
 
     /**
@@ -172,7 +182,9 @@ class PostsController extends Controller
             Storage::delete('public/cover_images/'.$post->cover_image);
         }
 
-        $post->delete();
-        return redirect('/posts')->with('success', 'Post Deleted Successfully!');
+        $success = $post->delete();
+        return [
+            'success'=> $success
+        ];
     }
 }
